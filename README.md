@@ -138,11 +138,3 @@ GitHub: https://github.com/dhrax21
 
 Email: dhrax21bc@gmail.com
 
-📄 License
-
-This project is open-source and available under the MIT License.
-
-
-Create EngiBrief case-study page
-
-If you want, I can:
