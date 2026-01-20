@@ -1,48 +1,67 @@
-import { blogs } from "../../data/blogs";
+import { useEffect, useState } from "react";
+import { getPublicBlogs } from "../../api/blogApi";
 
 export default function Blogs() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    getPublicBlogs()
+      .then(setBlogs)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <section id="blogs" className="py-24">
       <div className="max-w-6xl mx-auto px-6">
 
-        <div className="flex justify-center mb-6">
-          <span className="border px-4 py-1 rounded-full text-xs">
-            BLOGS
-          </span>
-        </div>
-
         <h2 className="text-3xl font-bold text-center mb-16">
-          Writing about real-world engineering
+          Blogs
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <article
-              key={blog.slug}
-              className="border rounded-2xl p-6 hover:shadow-soft transition"
-            >
-              <div className="text-xs text-gray-500 mb-3">
-                {new Date(blog.publishedAt).toDateString()}
-              </div>
+        {loading && (
+          <p className="text-center text-sm text-gray-500">
+            Loading blogs…
+          </p>
+        )}
 
-              <h3 className="font-semibold text-lg mb-3">
-                {blog.title}
-              </h3>
+        {error && (
+          <p className="text-center text-sm text-red-500">
+            Failed to load blogs.
+          </p>
+        )}
 
-              <p className="text-sm text-gray-600 mb-6">
-                {blog.summary}
-              </p>
-
-              <a
-                href={`/blog/${blog.slug}`}
-                className="text-sm underline hover:text-accent"
+        {!loading && !error && (
+          <div className="grid md:grid-cols-3 gap-8">
+            {blogs.map((blog) => (
+              <article
+                key={blog.slug}
+                className="border rounded-2xl p-6 hover:shadow-soft transition"
               >
-                Read article →
-              </a>
-            </article>
-          ))}
-        </div>
+                <div className="text-xs text-gray-500 mb-3">
+                  {new Date(blog.publishedAt).toDateString()}
+                </div>
 
+                <h3 className="font-semibold text-lg mb-3">
+                  {blog.title}
+                </h3>
+
+                <p className="text-sm text-gray-600 mb-6">
+                  {blog.summary}
+                </p>
+
+                <a
+                  href={`/blog/${blog.slug}`}
+                  className="text-sm underline hover:text-accent"
+                >
+                  Read article →
+                </a>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

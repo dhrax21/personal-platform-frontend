@@ -3,10 +3,16 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import Home from "./pages/Home";
-import BlogDetail from "./pages/BlogDetail";
-import BlogsPage from "./pages/BlogsPage";
 
+import Home from "./pages/Home";
+import BlogsPage from "./pages/BlogsPage";
+import BlogDetail from "./pages/BlogDetail";
+
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminBlogs from "./pages/admin/AdminBlogs";
+import AdminBlogForm from "./pages/admin/AdminBlogForm";
+
+import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 
 export default function App() {
   const location = useLocation();
@@ -24,9 +30,20 @@ export default function App() {
           transition={{ duration: 0.3 }}
         >
           <Routes location={location}>
+            {/* Public routes */}
             <Route path="/" element={<Home />} />
             <Route path="/blogs" element={<BlogsPage />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
+
+            {/* Admin login */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+
+            {/* Protected admin routes */}
+            <Route element={<AdminProtectedRoute />}>
+              <Route path="/admin/blogs" element={<AdminBlogs />} />
+              <Route path="/admin/blogs/create" element={<AdminBlogForm />} />
+              <Route path="/admin/blogs/edit/:id" element={<AdminBlogForm />} />
+            </Route>
           </Routes>
         </motion.main>
       </AnimatePresence>

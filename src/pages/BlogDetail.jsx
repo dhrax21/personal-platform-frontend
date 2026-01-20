@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { blogs } from "../data/blogs";
+import { getBlogBySlug } from "../api/blogApi";
 
 export default function BlogDetail() {
   const { slug } = useParams();
-  const blog = blogs.find((b) => b.slug === slug);
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  console.log("getBlogBySlug exists:", getBlogBySlug);
+
+  useEffect(() => {
+    getBlogBySlug(slug)
+      .then(setBlog)
+      .finally(() => setLoading(false));
+  }, [slug]);
+
+  if (loading) {
+    return <p className="py-32 text-center">Loading…</p>;
+  }
 
   if (!blog) {
-    return (
-      <div className="py-32 text-center">
-        <p>Blog not found.</p>
-      </div>
-    );
+    return <p className="py-32 text-center">Blog not found.</p>;
   }
 
   return (
@@ -18,6 +27,8 @@ export default function BlogDetail() {
       <h1 className="text-4xl font-bold mb-4">
         {blog.title}
       </h1>
+      
+
 
       <p className="text-sm text-gray-500 mb-10">
         {new Date(blog.publishedAt).toDateString()}
@@ -28,5 +39,6 @@ export default function BlogDetail() {
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
     </article>
+    
   );
 }
