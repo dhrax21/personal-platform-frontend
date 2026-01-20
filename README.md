@@ -1,16 +1,148 @@
-# React + Vite
+Frontend Platform — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, animated personal portfolio built with React, Tailwind CSS, and Framer Motion, showcasing real-world freelance experience, production projects, and clean UI/UX.
 
-Currently, two official plugins are available:
+This portfolio highlights my work as a Software Engineer with a strong focus on frontend engineering, animations, and real client delivery.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 Live Demo
 
-## React Compiler
+Live Website: X
+GitHub Repo: https://github.com/
+dhrax21/personal-platform-frontend
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✨ Features
 
-## Expanding the ESLint configuration
+Animated hero section (Framer Motion)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Responsive navbar with hamburger menu
+
+Active link underline + scroll-spy navigation
+
+Smooth page & section animations
+
+Services section with hover & scroll effects
+
+Experience timeline with real freelance work
+
+Social media links
+
+Fully responsive (desktop & mobile)
+
+Clean, modern UI inspired by premium Framer portfolios
+
+🧠 Highlighted Experience
+Freelance Web Developer — EngiBrief
+
+Production · Monetized Platform
+
+Built a production website for selling engineering eBooks and PDFs
+
+Implemented secure authentication and role-based access
+
+Integrated online payments with automated post-payment access
+
+Protected digital content and downloads
+
+Deployed and maintained the application on Google Cloud
+
+🔗 Live Website: https://engibrief.com
+
+This project represents real client work, not a demo or tutorial project.
+
+🛠 Tech Stack
+Frontend
+
+React (Vite)
+
+Tailwind CSS
+
+Framer Motion
+
+JavaScript (ES6+)
+
+Backend / Services (Client Project) SpringBoot, MySQL For Blog Upload Feature
+
+📂 Project Structure
+frontend-platform/
+├── src/
+│   ├── components/
+│   │   ├── layout/        # Navbar, Footer
+│   │   ├── sections/      # Hero, Services, Experience, Projects, Contact
+│   │   └── ui/            # Social links, reusable UI
+│   ├── data/              # Experience & project data
+│   ├── assets/            # Images
+│   ├── pages/             # Page components
+│   └── styles/            # Global styles
+├── public/
+├── tailwind.config.js
+└── package.json
+
+🚀 Getting Started
+1. Clone the repository
+git clone https://github.com/<your-username>/frontend-platform.git
+cd frontend-platform
+
+2. Install dependencies
+npm install
+
+3. Run locally
+npm run dev
+
+
+The app will be available at:
+
+http://localhost:5173
+
+📸 Screenshots
+
+(Add screenshots after final UI polish or deployment)
+
+🌍 Deployment
+
+Recommended:
+
+Cloudflare Pages
+
+Vercel
+
+Netlify
+
+Build command:
+
+npm run build
+
+
+Output directory:
+
+dist
+
+📈 Why This Portfolio
+
+Focuses on real-world engineering, not just UI
+
+Demonstrates freelance & production experience
+
+Clean architecture and readable code
+
+Modern frontend practices used correctly
+
+Designed for recruiter evaluation
+
+📬 Contact
+
+Portfolio: X
+
+LinkedIn: https://www.linkedin.com/in/dheeraj-singh-bc21048
+
+GitHub: https://github.com/dhrax21
+
+Email: dhrax21bc@gmail.com
+
+📄 License
+
+This project is open-source and available under the MIT License.
+
+
+Create EngiBrief case-study page
+
+If you want, I can:
