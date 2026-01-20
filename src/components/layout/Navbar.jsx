@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { FiBookOpen } from "react-icons/fi";
 
 const sections = [
   { id: "home", label: "Home" },
@@ -7,12 +10,16 @@ const sections = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Portfolio" },
+   { id: "blogs", label: "Blogs", isNew : true },
   { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Scroll-spy logic
   useEffect(() => {
@@ -37,12 +44,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const scrollTo = (id) => {
-    setOpen(false);
+ const scrollTo = (id) => {
+  setOpen(false);
+
+  // Blogs now has a dedicated page
+  if (id === "blogs") {
+    navigate("/blogs");
+    return;
+  }
+
+  if (location.pathname === "/") {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     });
-  };
+    return;
+  }
+
+  navigate("/");
+  setTimeout(() => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, 100);
+};
+
+
 
   return (
     <motion.nav
@@ -64,21 +90,27 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <ul className="hidden md:flex gap-8 text-sm relative">
           {sections.map((sec) => (
-            <li
-              key={sec.id}
-              onClick={() => scrollTo(sec.id)}
-              className="cursor-pointer relative"
-            >
-              <span>{sec.label}</span>
+          <li
+            key={sec.id}
+            onClick={() => scrollTo(sec.id)}
+            className="cursor-pointer relative flex items-center gap-2"
+          >
+            <span>{sec.label}</span>
 
-              {/* Active underline */}
-              {active === sec.id && (
-                <motion.div
-                  layoutId="nav-underline"
-                  className="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"
-                />
-              )}
-            </li>
+            {sec.isNew && (
+              <span className="text-[10px] px-2 py-[2px] rounded-full bg-black text-white">
+                New
+              </span>
+            )}
+
+            {/* Active underline */}
+            {active === sec.id && (
+              <motion.div
+                layoutId="nav-underline"
+                className="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"
+              />
+            )}
+          </li>
           ))}
         </ul>
 
@@ -117,12 +149,17 @@ export default function Navbar() {
                 <li
                   key={sec.id}
                   onClick={() => scrollTo(sec.id)}
-                  className={`cursor-pointer ${
+                  className={`cursor-pointer flex items-center gap-2 ${
                     active === sec.id ? "font-semibold" : ""
                   }`}
-                >
+                  >
                   {sec.label}
-                </li>
+                  {sec.isNew && (
+                    <span className="text-[10px] px-2 py-[2px] rounded-full bg-black text-white">
+                      New
+                    </span>
+                  )}
+                  </li>
               ))}
             </ul>
           </motion.div>

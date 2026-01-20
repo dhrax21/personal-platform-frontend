@@ -67,6 +67,12 @@ export default function Hero() {
             />
           </div>
         </motion.div>
+        <a
+          href="/blogs"
+          className="inline-block mt-12 text-sm underline hover:text-accent"
+        >
+          View all articles →
+        </a>
 
       </div>
     </section>
