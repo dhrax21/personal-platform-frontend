@@ -1,4 +1,5 @@
-const API_BASE_URL = __API_BASE_URL__;
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:9090";
 
 export async function adminLogin(credentials) {
   const res = await fetch(`${API_BASE_URL}/api/admin/auth/login`, {
@@ -14,13 +15,25 @@ export async function adminLogin(credentials) {
 }
 
 export async function getAdminMe() {
-  const res = await fetch(`${API_BASE_URL}/api/admin/me`, {
-    credentials: "include", // 🔑 REQUIRED
-  });
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/admin/me`, {
+      credentials: "include",
+    });
 
-  if (!res.ok) return null;
-  return res.json();
+    if (res.status === 401 || res.status === 403) {
+      return null; 
+    }
+
+    if (!res.ok) {
+      throw new Error("Unexpected auth error");
+    }
+
+    return res.json();
+  } catch {
+    return null;
+  }
 }
+
 
 export async function adminLogout() {
   await fetch(`${API_BASE_URL}/api/admin/auth/logout`, {

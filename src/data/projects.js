@@ -1,6 +1,6 @@
 import engibriefImg from "../assets/projects/engibrief.png";
-import bookmyshowImg from "../assets/projects/bookmyshow.png";
-import rideeasyImg from "../assets/projects/rideeasy.png";
+import bookmyshowImg from "../assets/projects/cineprime2.jpg";
+import rideeasyImg from "../assets/projects/rideeasy1.jpg";
 
 export default [
   {
@@ -17,7 +17,7 @@ export default [
     desc: "Movie booking backend with authentication and booking workflows.",
     tech: ["Spring Boot", "MySQL", "JWT"],
     image: bookmyshowImg,
-    link: "https://github.com/your-github",
+    link: "https://github.com/dhrax21/Book-my-Shows",
   },
   {
     title: "RideEasy",
@@ -25,6 +25,6 @@ export default [
     desc: "Cab booking platform with user and driver flows.",
     tech: ["Spring Boot", "MySQL", "React"],
     image: rideeasyImg,
-    link: "https://github.com/your-github",
+    link: "https://github.com/dhrax21/ride_easy_cab",
   },
 ];

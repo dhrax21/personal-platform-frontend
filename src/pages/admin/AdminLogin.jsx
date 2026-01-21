@@ -1,28 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { adminLogin } from "../../api/adminAuthApi";
+import { useAdminAuth } from "../../auth/AdminAuthContext";
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
+  const { login } = useAdminAuth();
   const navigate = useNavigate();
 
   const submit = async () => {
-    setError("");
-    setLoading(true);
-
     try {
-      // Backend sets HTTP-only cookie (auth_token)
-      await adminLogin(form);
-
-      // Navigate to protected admin route
+      await login(form);
       navigate("/admin/blogs");
     } catch {
       setError("Invalid credentials");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -35,28 +26,21 @@ export default function AdminLogin() {
       <input
         className="w-full border p-3 mb-4"
         placeholder="Username"
-        value={form.username}
-        onChange={(e) =>
-          setForm({ ...form, username: e.target.value })
-        }
+        onChange={(e) => setForm({ ...form, username: e.target.value })}
       />
 
       <input
         type="password"
         className="w-full border p-3 mb-6"
         placeholder="Password"
-        value={form.password}
-        onChange={(e) =>
-          setForm({ ...form, password: e.target.value })
-        }
+        onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
       <button
         onClick={submit}
-        disabled={loading}
-        className="w-full py-3 bg-black text-white disabled:opacity-60"
+        className="w-full py-3 bg-black text-white"
       >
-        {loading ? "Logging in..." : "Login"}
+        Login
       </button>
     </section>
   );

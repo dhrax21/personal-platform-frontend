@@ -1,6 +1,6 @@
-const API_BASE_URL = __API_BASE_URL__ ?? import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:9090";
 
-/* ✅ LIST BLOGS (PAGINATED) */
 export async function getPublicBlogs(page = 0, size = 5) {
   const res = await fetch(
     `${API_BASE_URL}/api/public/blogs?page=${page}&size=${size}`
