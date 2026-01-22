@@ -18,12 +18,13 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
+          className="flex-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -49,6 +50,6 @@ export default function App() {
       </AnimatePresence>
 
       <Footer />
-    </>
+    </div>
   );
 }
