@@ -6,7 +6,10 @@ This portfolio highlights my work as a Software Engineer with a strong focus on 
 
 🔗 Live Demo
 
-Live Website: X
+Personal Platform – Full-Stack Web Application
+🔗 Frontend: https://personal-platform-frontend.pages.dev
+
+🔗 Backend: https://personal-platform-backend.onrender.com
 GitHub Repo: https://github.com/
 dhrax21/personal-platform-frontend
 
